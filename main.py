@@ -19,7 +19,9 @@ SOFTWARE."""
 from random import shuffle
 
 deck = []
-hand = []
+playerHand = []
+opponentHand = []
+communityCards = []
 
 
 def addCards():
@@ -32,10 +34,14 @@ def addCards():
 def deal(deck):
     addCards()
     shuffle(deck)
-    moveCard(deck, hand)
-    moveCard(deck, hand)
-    hand[0] = convertCard(hand[0])
-    hand[1] = convertCard(hand[1])
+    moveCard(deck, playerHand)
+    moveCard(deck, playerHand)
+    playerHand[0] = convertCard(playerHand[0])
+    playerHand[1] = convertCard(playerHand[1])
+    moveCard(deck, opponentHand)
+    moveCard(deck, opponentHand)
+    opponentHand[0] = convertCard(opponentHand[0])
+    opponentHand[1] = convertCard(opponentHand[1])
 
 
 def moveCard(x, y):
@@ -153,4 +159,5 @@ def convertCard(raw):
         return "error"
 
 deal(deck)
-print(hand)
+print(playerHand)
+print(opponentHand)
