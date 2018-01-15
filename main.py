@@ -34,20 +34,64 @@ def addCards():
 def deal(deck):
     addCards()
     shuffle(deck)
-    moveCard(deck, playerHand)
-    moveCard(deck, playerHand)
-    playerHand[0] = convertCard(playerHand[0])
-    playerHand[1] = convertCard(playerHand[1])
-    moveCard(deck, opponentHand)
-    moveCard(deck, opponentHand)
-    opponentHand[0] = convertCard(opponentHand[0])
-    opponentHand[1] = convertCard(opponentHand[1])
+    translateCard(playerHand, 0)
+    translateCard(playerHand, 1)
+    translateCard(opponentHand, 0)
+    translateCard(opponentHand, 1)
+    displayCards()
+    input()
+
+
+def flop(deck):
+    translateCard(communityCards, 0)
+    translateCard(communityCards, 1)
+    translateCard(communityCards, 2)
+    displayCards()
+    input()
+
+
+def turn(deck):
+    translateCard(communityCards, 3)
+    displayCards()
+    input()
+
+
+def river(deck):
+    translateCard(communityCards, 4)
+    displayCards()
+    input()
+
+
+def reveal(deck):
+    print("Your Hand: " + str(" ".join(playerHand)))
+    print("Your Hand: " + str(" ".join(opponentHand)))
+    print("Community Cards: " + str(" ".join(communityCards)))
+    input()
+
+
+def translateCard(loc, num):
+    moveCard(deck, loc)
+    loc[num] = convertCard(loc[num])
+
+
+def displayCards():
+    print("Your Hand: " + str(" ".join(playerHand)))
+    print("Opponent's Hand: X X")
+    print("Community Cards: " + str(" ".join(communityCards)))
 
 
 def moveCard(x, y):
     temp = x[0]
     y.append(x[0])
     x.remove(temp)
+
+
+def playGame():
+    deal(deck)
+    flop(deck)
+    turn(deck)
+    river(deck)
+    reveal(deck)
 
 
 def convertCard(raw):
@@ -158,6 +202,5 @@ def convertCard(raw):
     else:
         return "error"
 
-deal(deck)
-print(playerHand)
-print(opponentHand)
+
+playGame()
