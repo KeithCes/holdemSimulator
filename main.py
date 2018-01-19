@@ -67,8 +67,12 @@ def checkHand(hand):
     suits = []
     i = 0
     while i < 7:
-        nums.append(str(hand[i])[0])
-        suits.append(str(hand[i])[1])
+        if str(hand[i])[0] == "1":
+            nums.append(str(hand[i])[0:2])
+            suits.append(str(hand[i])[2])
+        else:
+            nums.append(str(hand[i])[0])
+            suits.append(str(hand[i])[1])
         i += 1
     checkPair(nums)
     checkFlush(suits)
