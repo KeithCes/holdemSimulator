@@ -22,6 +22,9 @@ deck = []
 playerHand = []
 opponentHand = []
 communityCards = []
+straight = False
+flush = False
+straightFlush = False
 
 
 def addCards():
@@ -63,6 +66,7 @@ def river(deck):
 
 
 def checkHand(hand):
+    hand = ["2s", "6h", "As", "10s", "Jd", "Qs", "Ks"]
     nums = []
     suits = []
     i = 0
@@ -77,6 +81,7 @@ def checkHand(hand):
     checkPair(nums)
     checkFlush(suits)
     checkStraight(nums)
+    checkStraightFlush()
 
 
 def checkPair(lst):
@@ -121,7 +126,7 @@ def checkPair(lst):
 
 
 def checkFlush(lst):
-    flush = False
+    global flush
     amountS = 0
     amountH = 0
     amountC = 0
@@ -137,13 +142,13 @@ def checkFlush(lst):
         elif lst[i] == "d":
             amountD += 1
         i += 1
-    if amountS == 5 or amountH == 5 or amountC == 5 or amountD == 5 :
+    if amountS == 5 or amountH == 5 or amountC == 5 or amountD == 5:
         flush = True
     print("Flush: " + str(flush))
 
 
 def checkStraight(lst):
-    straight = False
+    global straight
     q = 0
     while q < 7:
         if lst[q] == "J":
@@ -155,7 +160,7 @@ def checkStraight(lst):
         elif lst[q] == "A":
             lst[q] = "14"
         q += 1
-    lst = sorted(lst, key = int)
+    lst = sorted(lst, key=int)
     straightCount = 1
     i = 0
     while i < 6 and straightCount < 5:
@@ -176,6 +181,15 @@ def checkStraight(lst):
         elif lst[q] == "14":
             lst[q] = "A"
     print("Straight: " + str(straight))
+
+
+def checkStraightFlush():
+    global straight
+    global flush
+    global straightFlush
+    if straight and flush:
+        straightFlush = True
+    print("Straight Flush: " + str(straightFlush))
 
 
 def reveal(deck):
