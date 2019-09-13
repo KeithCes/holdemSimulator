@@ -17,6 +17,7 @@ SOFTWARE."""
 
 
 from random import shuffle
+import math
 
 deck = []
 playerHand = []
@@ -66,7 +67,7 @@ def river(deck):
 
 
 def checkHand(hand):
-    hand = ["2s", "6h", "As", "10s", "Jd", "Qs", "Ks"]
+    print(hand)
     nums = []
     suits = []
     i = 0
@@ -118,11 +119,11 @@ def checkPair(lst):
             fullHouse = True
         elif len(pairs) > 1:
             twoPair = True
- #   print("Pairs: " + str(pairs))
-  #  print("Three Piece: " + str(threeKind))
- #   print("Four Piece: " + str(fourKind))
-   # print("Full House: " + str(fullHouse))
-  #  print("Two Pair: " + str(twoPair))
+    print("Pairs: " + str(pairs))
+    print("Two Pair: " + str(twoPair))
+    print("Three Piece: " + str(threeKind))
+    print("Four Piece: " + str(fourKind))
+    print("Full House: " + str(fullHouse))
 
 
 def checkFlush(lst):
@@ -144,7 +145,7 @@ def checkFlush(lst):
         i += 1
     if amountS == 5 or amountH == 5 or amountC == 5 or amountD == 5:
         flush = True
-#    print("Flush: " + str(flush))
+    print("Flush: " + str(flush))
 
 
 def checkStraight(lst):
@@ -180,7 +181,7 @@ def checkStraight(lst):
             lst[q] = "K"
         elif lst[q] == "14":
             lst[q] = "A"
- #   print("Straight: " + str(straight))
+    print("Straight: " + str(straight))
 
 
 def checkStraightFlush():
@@ -189,7 +190,7 @@ def checkStraightFlush():
     global straightFlush
     if straight and flush:
         straightFlush = True
-   # print("Straight Flush: " + str(straightFlush))
+    print("Straight Flush: " + str(straightFlush))
 
 
 def reveal(deck):
@@ -227,112 +228,35 @@ def playGame():
 
 
 def convertCard(raw):
-    if raw == 1:
-        return "2s"
-    elif raw == 2:
-        return "2c"
-    elif raw == 3:
-        return "2h"
-    elif raw == 4:
-        return "2d"
-    elif raw == 5:
-        return "3s"
-    elif raw == 6:
-        return "3c"
-    elif raw == 7:
-        return "3h"
-    elif raw == 8:
-        return "3d"
-    elif raw == 9:
-        return "4s"
-    elif raw == 10:
-        return "4c"
-    elif raw == 11:
-        return "4h"
-    elif raw == 12:
-        return "4d"
-    elif raw == 13:
-        return "5s"
-    elif raw == 14:
-        return "5c"
-    elif raw == 15:
-        return "5h"
-    elif raw == 16:
-        return "5d"
-    elif raw == 17:
-        return "6s"
-    elif raw == 18:
-        return "6c"
-    elif raw == 19:
-        return "6h"
-    elif raw == 20:
-        return "6d"
-    elif raw == 21:
-        return "7s"
-    elif raw == 22:
-        return "7c"
-    elif raw == 23:
-        return "7h"
-    elif raw == 24:
-        return "7d"
-    elif raw == 25:
-        return "8s"
-    elif raw == 26:
-        return "8c"
-    elif raw == 27:
-        return "8h"
-    elif raw == 28:
-        return "8d"
-    elif raw == 29:
-        return "9s"
-    elif raw == 30:
-        return "9c"
-    elif raw == 31:
-        return "9h"
-    elif raw == 32:
-        return "9d"
-    elif raw == 33:
-        return "10s"
-    elif raw == 34:
-        return "10c"
-    elif raw == 35:
-        return "10h"
-    elif raw == 36:
-        return "10d"
-    elif raw == 37:
-        return "Js"
-    elif raw == 38:
-        return "Jc"
-    elif raw == 39:
-        return "Jh"
-    elif raw == 40:
-        return "Jd"
-    elif raw == 41:
-        return "Qs"
-    elif raw == 42:
-        return "Qc"
-    elif raw == 43:
-        return "Qh"
-    elif raw == 44:
-        return "Qd"
-    elif raw == 45:
-        return "Ks"
-    elif raw == 46:
-        return "Kc"
-    elif raw == 47:
-        return "Kh"
-    elif raw == 48:
-        return "Kd"
-    elif raw == 49:
-        return "As"
-    elif raw == 50:
-        return "Ac"
-    elif raw == 51:
-        return "Ah"
-    elif raw == 52:
-        return "Ad"
+    numberVal = math.ceil(raw / 4) + 1
+    suitVal = raw % 4
+
+    # gets suit
+    if suitVal == 1:
+        suit = "s"
+    elif suitVal == 2:
+        suit = "c"
+    elif suitVal == 3:
+        suit = "h"
+    elif suitVal == 0:
+        suit = "d"
+
+    # gets number value unless card is a face card
+    if numberVal == 11:
+        number = "J"
+    elif numberVal == 12:
+        number = "Q"
+    elif numberVal == 13:
+        number = "K"
+    elif numberVal == 14:
+        number = "A"
     else:
-        return "error"
+        number = numberVal
+
+    # appends number and suit, returns them back
+    number = str(number)
+    number += suit
+    return number
 
 
 playGame()
