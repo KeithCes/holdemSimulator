@@ -41,28 +41,28 @@ def deal(deck):
     translateCard(playerHand, 1)
     translateCard(opponentHand, 0)
     translateCard(opponentHand, 1)
-#    displayCards()
-#    input()
+    displayCards()
+    input()
 
 
 def flop(deck):
     translateCard(communityCards, 0)
     translateCard(communityCards, 1)
     translateCard(communityCards, 2)
-#    displayCards()
-#    input()
+    displayCards()
+    input()
 
 
 def turn(deck):
     translateCard(communityCards, 3)
-#    displayCards()
-#    input()
+    displayCards()
+    input()
 
 
 def river(deck):
     translateCard(communityCards, 4)
-#    displayCards()
-#    input()
+    displayCards()
+    input()
 
 
 def checkHand(hand):
@@ -118,11 +118,11 @@ def checkPair(lst):
             fullHouse = True
         elif len(pairs) > 1:
             twoPair = True
-    print("Pairs: " + str(pairs))
-    print("Three Piece: " + str(threeKind))
-    print("Four Piece: " + str(fourKind))
-    print("Full House: " + str(fullHouse))
-    print("Two Pair: " + str(twoPair))
+ #   print("Pairs: " + str(pairs))
+  #  print("Three Piece: " + str(threeKind))
+ #   print("Four Piece: " + str(fourKind))
+   # print("Full House: " + str(fullHouse))
+  #  print("Two Pair: " + str(twoPair))
 
 
 def checkFlush(lst):
@@ -144,7 +144,7 @@ def checkFlush(lst):
         i += 1
     if amountS == 5 or amountH == 5 or amountC == 5 or amountD == 5:
         flush = True
-    print("Flush: " + str(flush))
+#    print("Flush: " + str(flush))
 
 
 def checkStraight(lst):
@@ -180,7 +180,7 @@ def checkStraight(lst):
             lst[q] = "K"
         elif lst[q] == "14":
             lst[q] = "A"
-    print("Straight: " + str(straight))
+ #   print("Straight: " + str(straight))
 
 
 def checkStraightFlush():
@@ -189,7 +189,7 @@ def checkStraightFlush():
     global straightFlush
     if straight and flush:
         straightFlush = True
-    print("Straight Flush: " + str(straightFlush))
+   # print("Straight Flush: " + str(straightFlush))
 
 
 def reveal(deck):
